@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+label#content {
+	display: block;
+}
+
+textarea#post_content {
+	width: 500px;
+	height: 200px;
+}

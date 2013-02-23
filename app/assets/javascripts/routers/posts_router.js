@@ -1,7 +1,9 @@
 Blog.Routers.Posts = Backbone.Router.extend({
 	routes: {
 		'': 'index',
-		'posts/:id': 'show'
+		'posts/:id': 'show',
+		'posts/:id/edit': 'edit',
+		'posts/new': 'newPost'
 	},
 
 	initialize: function(){
@@ -17,6 +19,17 @@ Blog.Routers.Posts = Backbone.Router.extend({
 	show: function(id){
 		post = this.collection.get(id);
 		view = new Blog.Views.PostsShow({model: post});
+		$('#container').html(view.render().el);
+	},
+
+	edit: function(id){
+		post = this.collection.get(id);
+		view = new Blog.Views.PostsEdit({model: post, collection: this.collection});
+		$('#container').html(view.render().el);
+	},
+
+	newPost: function(){
+		view = new Blog.Views.PostsNew({collection: this.collection});
 		$('#container').html(view.render().el);
 	}
 });
