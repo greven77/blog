@@ -10,18 +10,26 @@ Blog.Views.PostsNew = Backbone.View.extend({
 		return this;
 	},
 
-	createPost: function(){
+	createPost: function(event){
+		event.preventDefault();
 		var attributes = {	title: this.$('#post_title').val(),
 							content: this.$('#post_content').val()}
 		return this.collection.create(attributes, {
 			success: this.showPostsList,
-			error: this.handleError
+			error: this.errorHandler
 		});	
 	},
 
 	errorHandler: function(post, response){
 		if (response.status == 422){
-			console.log("bad request");
+			console.log(response.status);
+			errors = $.parseJSON(response.responseText).errors;
+			for(attribute in errors){
+				messages = errors[attribute];
+				messages.forEach(function(message){
+					$('#errors').append("<div class='error'>" + message + "<div/>");
+				});
+			}
 		}
 	},
 

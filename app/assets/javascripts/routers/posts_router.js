@@ -3,15 +3,16 @@ Blog.Routers.Posts = Backbone.Router.extend({
 		'': 'index',
 		'posts/:id': 'show',
 		'posts/:id/edit': 'edit',
-		'posts/new': 'newPost'
+		'posts/new/': 'newPost'
 	},
 
 	initialize: function(){
 		this.collection = new Blog.Collections.Posts();
-		this.collection.fetch();
+		//this.collection.fetch();
 	},
 
 	index: function(){
+		this.collection.fetch();
 		view = new Blog.Views.PostsIndex({collection: this.collection});
 		$('#container').html(view.render().el);
 	},

@@ -11,7 +11,9 @@ Blog.Views.PostsItem = Backbone.View.extend({
 	},
 
 	render: function(){
-		this.$el.html(Blog.template('posts/item').render(this.model.toJSON()));
+		var attributes = this.model.toJSON();
+		attributes.content = this.limitPostChars(attributes);
+		this.$el.html(Blog.template('posts/item').render(attributes));
 		return this;
 	},
 
@@ -26,12 +28,21 @@ Blog.Views.PostsItem = Backbone.View.extend({
 	},
 
 	removePost: function(event){
+		self = this;
 		event.preventDefault();
 		this.model.destroy({
 			success: function(){
-				this.remove();
-				Backbone.history.navigate("/", true);
+				self.remove();
 			}
 		});
+	},
+
+	limitPostChars: function(attributes){
+		var str = attributes.content;
+		if(str.length >= 50){
+			str = str.substring(0, 50) + "..."; 
+			console.log(str);
+		}
+		return str;
 	}
 });

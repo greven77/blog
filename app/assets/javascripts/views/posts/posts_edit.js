@@ -34,7 +34,13 @@ Blog.Views.PostsEdit = Backbone.View.extend({
 
 	handleError: function(post, response){
 		if (response.status == 422){
-			console.log("bad request");
+			errors = $.parseJSON(response.responseText).errors;
+			for(attribute in errors){
+				messages = errors[attribute];
+				messages.forEach(function(message){
+					$('#errors').append("<div class='error'>" + message + "<div/>");
+				});
+			}
 		}
 	}
 });

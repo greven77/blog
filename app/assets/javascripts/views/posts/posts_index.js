@@ -5,9 +5,8 @@ Blog.Views.PostsIndex = Backbone.View.extend({
   },
 
   initialize: function(){
-    _.bindAll(this, 'render');
+    //_.bindAll(this, 'render');
     this.collection.bind('reset', this.render, this);
-    this.collection.bind('change', this.render, this);
   },
 
   render: function(){
@@ -23,7 +22,7 @@ Blog.Views.PostsIndex = Backbone.View.extend({
 
   newPost: function(event){
     event.preventDefault();
-    Backbone.history.navigate('posts/new', true);
+    Backbone.history.navigate('posts/new/', true);
   }
 
 });
