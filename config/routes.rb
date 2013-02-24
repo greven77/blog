@@ -1,9 +1,14 @@
 Blog::Application.routes.draw do
+
   scope "api" do
-    resources :posts
+    resources :posts do
+      resources :comments
+    end
   end
 
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
 
   root to: "main#index"
 

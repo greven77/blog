@@ -3,4 +3,6 @@ class Post < ActiveRecord::Base
   validates :title, :presence => true, :length => { :maximum => 70,
   	:too_long => "%{count} characters is the maximum allowed" }
   validates :content, :presence => true
+
+  has_many :comments, dependent: :destroy
 end

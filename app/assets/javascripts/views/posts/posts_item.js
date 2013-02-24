@@ -41,7 +41,6 @@ Blog.Views.PostsItem = Backbone.View.extend({
 		var str = attributes.content;
 		if(str.length >= 50){
 			str = str.substring(0, 50) + "..."; 
-			console.log(str);
 		}
 		return str;
 	}

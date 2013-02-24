@@ -3,7 +3,8 @@ Blog.Routers.Posts = Backbone.Router.extend({
 		'': 'index',
 		'posts/:id': 'show',
 		'posts/:id/edit': 'edit',
-		'posts/new/': 'newPost'
+		'posts/new/': 'newPost',
+		'admin': 'admin',
 	},
 
 	initialize: function(){
@@ -32,5 +33,9 @@ Blog.Routers.Posts = Backbone.Router.extend({
 	newPost: function(){
 		view = new Blog.Views.PostsNew({collection: this.collection});
 		$('#container').html(view.render().el);
+	},
+	//accessed through hash based routing
+	admin: function(){
+		$('#container').html("admin");
 	}
 });
