@@ -3,7 +3,8 @@ window.Blog = {
   Collections: {},
   Views: {},
   Routers: {},
-  initialize: function() {
+  initialize: function(posts) {
+    this.posts = new Blog.Collections.Posts(posts);
     this.app = new Blog.Routers.Posts();
     Backbone.history.start({pushState: true});
     return this;

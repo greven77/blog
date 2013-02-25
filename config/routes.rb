@@ -1,8 +1,25 @@
 Blog::Application.routes.draw do
 
+  get "posts/index"
+
+  devise_for :users, :controllers => {
+    :registrations => "registrations",
+    :omniauth_callbacks => "users/omniauth_callbacks"
+  }
+
+  namespace :admin do
+    root :to => "base#index"
+    resources :users do
+      resources :posts
+    end
+
+    resources :posts 
+  end
+
   scope "api" do
     resources :posts do
       resources :comments
+    resources :users 
     end
   end
 

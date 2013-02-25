@@ -7,6 +7,9 @@ gem 'rails', '3.2.8'
 
 gem 'sqlite3'
 
+group :development, :test do
+	gem 'debugger'
+end
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,6 +26,12 @@ end
 gem 'jquery-rails'
 gem 'backbone-on-rails'
 gem 'hogan_assets'
+
+gem 'devise'
+gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
+gem 'omniauth-github', :github => "intridea/omniauth-github"
+
+gem 'kaminari'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

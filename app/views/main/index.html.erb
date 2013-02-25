@@ -1,1 +1,8 @@
 <div id="container">Loading...</div>
+<%= content_for :javascript do -%>
+  <%= javascript_tag do %>
+    $(function() {
+      Blog.init(<%== @posts.to_json %>);
+    });
+  <% end %>
+<% end -%>

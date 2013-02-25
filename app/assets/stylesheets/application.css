@@ -24,3 +24,13 @@ textarea#post_content {
 	background-color: red;
 	font-weight: bold;
 }
+
+.nav {
+	display: inline;
+	list-style-type: none;	
+}
+
+div.paginator {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}

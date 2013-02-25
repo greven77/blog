@@ -1,0 +1,18 @@
+<%= form_for [@user, @post] do |f| %>
+	<% unless @post.errors.empty? %>
+		<%= @post.errors.full_messages.each do |msg| %>
+			<p> <%= msg %></p>
+		<% end %>
+	<% end %>
+
+	<p>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.label :content %>
+		<%= f.text_area :content %>
+	</p>
+
+	<%= f.submit %>
+<% end %>

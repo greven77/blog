@@ -1,0 +1,25 @@
+<div id="new_post">
+	<%= link_to "New post", new_admin_post_path, :id => "new" %>
+</div>
+<div class="paginator">
+	<%= paginate @posts %>
+</div>
+
+<div id="posts">
+	<% @posts.each do |post| %>
+		<div class="post_title">
+			<p><%= post.title %></p>
+		</div>
+		<div class="post_content">
+			<p><%= truncate(post.content, :length => 100) %>
+			</p>
+			<%= link_to "Edit post",
+				edit_admin_post_path(post), :id => "edit" %>
+			<%= link_to "Remove post", admin_post_path(post), :id => "delete", :method => :delete %>
+		</div>
+	<% end %>
+</div>
+
+<div class="paginator">
+	<%= paginate @posts %>
+</div>

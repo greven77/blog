@@ -1,0 +1,16 @@
+<%= form_for [@post, @post.comments.build] do |f| %>
+	<% if @post.errors.any? %>
+		<ul>
+		<%= @comment.errors.full_messages.each do |msg| %>
+			<li> <%= msg %></li>
+		<% end %>
+		</ul>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :content, :id => "content" %>
+		<%= f.text_area :content, :id => "comment_content" %>
+	</div>
+
+	<%= f.submit %>
+<% end %>

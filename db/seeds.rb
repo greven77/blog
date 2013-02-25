@@ -12,3 +12,6 @@ Post.all.each do |post|
 		post.comments << comment
 	end
 end
+
+User.delete_all
+User.create!(email: "user@example.com", password: "xpto123", admin: true)
