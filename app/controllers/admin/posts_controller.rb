@@ -23,6 +23,7 @@ class Admin::PostsController < Admin::BaseController
   end
 
   def create
+    @post = Post.new(params[:post])
   	if @post.save
   		flash[:notice] = "Post has been created."
   		redirect_to admin_posts_path
