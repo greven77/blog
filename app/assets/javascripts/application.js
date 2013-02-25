@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
 //= require hogan.js
 //= require underscore
@@ -24,6 +25,12 @@
 //= require_tree .
 
 $(document).ajaxSend(function (e, xhr, options) {
-  var token = $("meta[name='csrf-token']").attr("content");
-  xhr.setRequestHeader("X-CSRF-Token", token);
+ var token = $("meta[name='csrf-token']").attr("content");
+ xhr.setRequestHeader("X-CSRF-Token", token);
+});
+
+$(function() {
+ 	$('#search').autocomplete({
+    	source: "/search_suggestions"
+  });
 });

@@ -151,6 +151,7 @@ GEM
     rake (10.0.3)
     rdoc (3.12.1)
       json (~> 1.4)
+    redis (3.0.2)
     sass (3.2.6)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -187,6 +188,7 @@ DEPENDENCIES
   omniauth-github!
   omniauth-twitter!
   rails (= 3.2.8)
+  redis
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)

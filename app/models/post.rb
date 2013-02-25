@@ -5,4 +5,8 @@ class Post < ActiveRecord::Base
   validates :content, :presence => true
 
   has_many :comments, dependent: :destroy
+
+  def self.search(term)
+  	where("content like :term or title like :term", term: "%#{term}%")
+  end
 end

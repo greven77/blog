@@ -7,6 +7,8 @@ Blog::Application.routes.draw do
     :omniauth_callbacks => "users/omniauth_callbacks"
   }
 
+  resources :search_suggestions
+
   namespace :admin do
     root :to => "base#index"
     resources :users do

@@ -3,7 +3,11 @@ class Admin::PostsController < Admin::BaseController
   before_filter :find_post, :only => [:show, :edit, :update, :destroy]
   
   def index
-  	@posts = Post.order("id DESC").page(params[:page]).per(10)
+    if params[:search]
+      @posts = Post.search(params[:search]).page(params[:page]).per(10)
+    else
+  	  @posts = Post.order("id DESC").page(params[:page]).per(10)
+    end
   end
 
   def show

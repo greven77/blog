@@ -7,7 +7,7 @@
 		<div class="post_content">
 			<p><%= truncate post.content, :length => 100 %>
 			</p>
-			<%= link_to "Read more", :id => "show", post_path(post) %>
+			<%= link_to "Read more", post_path(post), :id => "show" %>
 		</div>
 	<% end %>
 </div>
