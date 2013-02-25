@@ -4,6 +4,8 @@ Blog.Collections.Posts = Backbone.Collection.extend({
 
   initialize: function(){
   	this.page = 1;
+  	this.fetch();
+  	this.pageNumber = this.length;
   },
 
   previousPage: function(){
@@ -21,15 +23,27 @@ Blog.Collections.Posts = Backbone.Collection.extend({
   	if (this.length >= 10){
   		this.page = this.page + 1;
   		this.getPaginatedPosts();
-  		console.log("paginated");
   		return;
   	}
   	return false;
   },
 
+  hasPreviousPage: function(){
+  	return this.page > 1;
+  },
+
+  hasNextPage: function(){
+  	return this.length >= 10;
+  },
+
   getPaginatedPosts: function(){
+
   	if (this.page == "undefined"){
   		this.page = 1;
+  	}
+
+  	if (this.pageNumber == 0){
+  		this.pageNumber = Math.ceil(this.length / 10);
   	}
 
   	this.url = "/api/posts/page/" + this.page;
