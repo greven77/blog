@@ -21,8 +21,9 @@ Blog::Application.routes.draw do
   scope "api" do
     resources :posts do
       resources :comments
-    resources :users 
+      get 'page/:page', :action => :index, :on => :collection 
     end
+    resources :users
   end
 
   resources :posts do

@@ -3,7 +3,12 @@ class PostsController < ApplicationController
 
 	def index
 		#respond_with Post.all
-		@posts = Post.all
+		if params[:page]
+   			@posts = Post.page(params[:page]).per(10)
+   		else
+			@posts = Post.all
+		end
+
 		respond_to  do |format|
 			format.html
 			format.json { render json: @posts }
