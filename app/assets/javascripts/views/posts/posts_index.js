@@ -11,6 +11,7 @@ Blog.Views.PostsIndex = Backbone.View.extend({
 
   render: function(){
   	this.$el.html(Blog.template('posts/index').render());
+    //this.addPaginators();
   	this.collection.each(this.addOne, this);
   	return this;
   },
@@ -20,9 +21,14 @@ Blog.Views.PostsIndex = Backbone.View.extend({
   	this.$('#posts').append(view.render().el, this);
   },
 
+  addPaginators: function(){
+    paginator = new Blog.Views.PostsPaginator({collection: this.collection});
+    this.$('#top_paginator').append(paginator.render().el, this);
+    this.$('#bottom_paginator').append(paginator.render().el, this);
+  },
+
   newPost: function(event){
     event.preventDefault();
     Backbone.history.navigate('posts/new/', true);
   }
-
 });

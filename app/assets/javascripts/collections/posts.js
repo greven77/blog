@@ -4,16 +4,14 @@ Blog.Collections.Posts = Backbone.Collection.extend({
 
   initialize: function(){
   	this.page = 1;
-  	this.fetch();
-  	this.pageNumber = this.length;
+  	this.pageNumber = Math.ceil(this.length / 10);
   },
 
   previousPage: function(){
 
   	if (this.page > 1){
   		this.page = this.page - 1;
-  		this.getPaginatedPosts();
-  		return;
+  		return this.page;
   	}
   	return false;
   },
@@ -22,8 +20,7 @@ Blog.Collections.Posts = Backbone.Collection.extend({
 
   	if (this.length >= 10){
   		this.page = this.page + 1;
-  		this.getPaginatedPosts();
-  		return;
+  		return this.page;
   	}
   	return false;
   },
@@ -46,8 +43,12 @@ Blog.Collections.Posts = Backbone.Collection.extend({
   		this.pageNumber = Math.ceil(this.length / 10);
   	}
 
-  	this.url = "/api/posts/page/" + this.page;
-  	this.fetch();
+    this.getPage(this.page);
+  },
+
+  getPage: function(pageNumber){
+    this.url = "/api/posts/page/" + pageNumber;
+    this.fetch();
   }
 
 });

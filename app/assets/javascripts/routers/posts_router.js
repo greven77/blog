@@ -5,6 +5,7 @@ Blog.Routers.Posts = Backbone.Router.extend({
 		'posts/:id/edit': 'edit',
 		'posts/new/': 'newPost',
 		'admin': 'admin',
+		'posts/page/:id': 'getPostsPage'
 	},
 
 	initialize: function(){
@@ -13,7 +14,14 @@ Blog.Routers.Posts = Backbone.Router.extend({
 	},
 
 	index: function(){
-		this.collection.fetch();
+		this.getPostsPage(1);
+		// this.collection.getPage(1);
+		// view = new Blog.Views.PostsIndex({collection: this.collection});
+		// $('#container').html(view.render().el);
+	},
+
+	getPostsPage: function(id){
+		this.collection.getPage(id);
 		view = new Blog.Views.PostsIndex({collection: this.collection});
 		$('#container').html(view.render().el);
 	},
